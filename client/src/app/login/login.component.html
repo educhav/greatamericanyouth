@@ -1,0 +1,42 @@
+<div class="main-heading">
+    <h1>Log-in or Register!</h1>
+</div>
+<div class="main-container">
+    <p-tabView>
+        <p-tabPanel header="Log-in" leftIcon="pi pi-sign-in" styleClass="panel">
+            <form (submit)="login()" class="login-form">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                    <input [(ngModel)]="loginUsername" name="loginUsername" style="font-size: 1rem" type="text"
+                        pInputText placeholder="Username">
+                </div>
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                    <input [(ngModel)]="loginPassword" name="loginPassword" type="password" pPassword
+                        placeholder="Password" [feedback]="false" />
+                </div>
+                <p-button class="submit-button" type="submit" icon="pi pi-sign-in" styleClass="pi-button-lg">
+                </p-button>
+            </form>
+        </p-tabPanel>
+        <p-tabPanel header="Register" leftIcon="pi pi-user-edit" styleClass="panel">
+            <form (submit)="register()" class="login-form">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                    <input [(ngModel)]="registerUsername" name="registerUserName" style="font-size: 1rem" type="text"
+                        pInputText placeholder="Username">
+                </div>
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                    <input [(ngModel)]="registerPassword" name="registerPassword" type="password" pPassword
+                        placeholder="Password" [feedback]="false" />
+                </div>
+                <p-button class="submit-button" type="submit" icon="pi pi-user-edit" styleClass="pi-button-lg">
+                </p-button>
+                <!-- <small id="username-help" class="p-error">Username is not available.</small> -->
+            </form>
+
+        </p-tabPanel>
+    </p-tabView>
+    <p-toast position="center"></p-toast>
+</div>

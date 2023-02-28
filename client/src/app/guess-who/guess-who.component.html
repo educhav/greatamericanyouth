@@ -1,0 +1,46 @@
+<div *ngIf="!started" class="main-container">
+    <div class="sub-container">
+        <h1>GUESS WHO?</h1>
+    </div>
+    <div class="sub-container">
+        <p-button (onClick)="startGame()" icon="pi pi-power-off" styleClass="pi-button-lg">
+        </p-button>
+    </div>
+</div>
+
+<div *ngIf="started && !gameOver" class="main-container" id="game">
+    <div class="sub-container">
+        <h1>Round {{roundNumber}}</h1>
+    </div>
+    <div class="sub-container">
+        <p-progressSpinner *ngIf="!messagesLoaded"></p-progressSpinner>
+    </div>
+    <div class="sub-container question" id="question">
+        <p-avatar size="large" shape="circle" icon="pi pi-question"></p-avatar>
+        <p class="current">{{currentMessage}}</p>
+    </div>
+    <div class="sub-container avatars">
+        <span *ngFor="let image of images | keyvalue">
+            <p-avatar (click)="userResponse(image.key)" class="image-avatar" size="large" shape="circle"
+                [image]="image.value" [ngClass]="wrongSet.has(image.key) ? 'error' : ''"
+                [class]="this.wrongPerson === image.value ? 'shake' : ''">
+            </p-avatar>
+        </span>
+    </div>
+
+</div>
+
+<div *ngIf="gameOver" class="main-container">
+    <div class="sub-container">
+        <h1 class="game-over">GAME OVER: YOU LASTED {{roundNumber}} {{roundNumber == 1 ? 'ROUND' : 'ROUNDS'}}</h1>
+    </div>
+    <div class="sub-container">
+        <h2 class="correct">Correct person was: </h2>
+        <p-avatar class="image-avatar correct" size="large" shape="circle" [image]="correctAnswer">
+        </p-avatar>
+    </div>
+    <div class="sub-container">
+        <h1 id="play-again" (click)="playAgain()">PLAY AGAIN..?</h1>
+    </div>
+
+</div>

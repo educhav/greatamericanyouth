@@ -1,0 +1,32 @@
+<div class="main-container">
+    <div class="gallery-container">
+        <p-galleria class="gallery" [value]="images" [autoPlay]="true" [containerStyle]="{'max-width': '', 'width':''}"
+            [circular]="true">
+            <ng-template pTemplate="item" let-item>
+                <img [src]="item.src" class="item" style="display: block;" />
+            </ng-template>
+            <ng-template class="grid-template" pTemplate="thumbnail" let-item>
+                <div class="grid grid-nogutter justify-content-center">
+                    <img [src]="item.src" class="thumbnail" style="display: block;" />
+
+                </div>
+            </ng-template>
+        </p-galleria>
+    </div>
+    <div class="dogma">
+        <h1 class="title">Dogma</h1>
+
+        <p class="dogma-text">We are a team of filthy-rich philanthropists who wish to deliver credible, authentic
+            news to the
+            hands of the great
+            American people.</p>
+        <p class="dogma-text">Meanwhile you, the reader, are probably mindlessly browsing on your computer with your
+            disgusting
+            dorito caked
+            fingers and Walmart-brand sweatpants. You probably always take the easy way in life. You go to a
+            community
+            college, have an
+            average-looking girlfriend, and go to the gym solely to watch TV and escape the embarrassment you
+            face every time you enter your family's home. Pity.</p>
+    </div>
+</div>

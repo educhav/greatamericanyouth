@@ -1,0 +1,45 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    animation: fadeIn 0.5s;
+}
+
+.main-heading {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.submit-button {
+    display: flex;
+    justify-content: center;
+}
+
+::ng-deep .p-tabview-nav-link {
+    width: 9.5rem;
+}
+
+#username-help {
+    margin-left: 1rem;
+}
+
+.p-inputgroup {
+    margin-bottom: 1rem;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0%;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}

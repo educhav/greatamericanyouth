@@ -1,0 +1,28 @@
+::ng-deep .p-sidebar {
+    color: #d2d2d2;
+    background-color: #161616;
+}
+
+
+::ng-deep .p-button {
+    width: 15rem;
+    height: 3rem;
+
+    color: #d2d2d2;
+    background-color: #161616;
+    //border-radius: 2rem;
+    border-color: #d2d2d2;
+}
+
+::ng-deep .p-button-icon {
+    font-size: 2rem;
+}
+
+a {
+    color: #d2d2d2;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #93C5FD;
+}

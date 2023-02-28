@@ -1,0 +1,55 @@
+.main-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+    justify-content: space-between;
+}
+
+.banner {
+    position: relative;
+    text-align: center;
+    color: white;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.responsive {
+    width: 100%;
+}
+
+
+.text {
+    font: monospace;
+    font-weight: bold;
+    font-size: 0.5vw;
+    position: absolute;
+    bottom: 3vw;
+    right: 16px;
+    // color: #d2d2d2;
+    color: #ffcd42;
+    animation: leaves infinite 0.4s alternate;
+}
+
+
+@keyframes leaves {
+    from {
+        transform: rotate(-20deg) scale(1.0);
+    }
+
+    to {
+        transform: rotate(-20deg) scale(1.25);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .banner {
+        margin-left: 2%;
+        margin-right: 2%;
+        width: 100vw;
+    }
+
+    .text {
+        font-size: 1vw;
+    }
+
+}

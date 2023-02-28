@@ -1,0 +1,30 @@
+<div *ngIf="loaded" class="main-container">
+    <div class="sub-container">
+        <h1 class="shiny">LEADERBOARDS</h1>
+    </div>
+    <div class="sub-container">
+        <p-tabView *ngFor="let game of this.games">
+            <p-tabPanel [header]="game" styleClass="panel">
+                <p-table [value]="this.leaderboards[game]" [scrollable]="true" scrollHeight="400px"
+                    [tableStyle]="{'min-width': '60rem'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>NAME</th>
+                            <th>SCORE</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-game>
+                        <tr>
+                            <td>{{game[0]}}</td>
+                            <td>{{game[1]}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>
+<div *ngIf="!loaded" class="main-container">
+    <p-progressSpinner></p-progressSpinner>
+</div>

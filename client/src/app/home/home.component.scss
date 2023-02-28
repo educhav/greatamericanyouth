@@ -1,0 +1,113 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+    animation: fadeIn 0.5s;
+    padding-top: 2vw;
+}
+
+.item {
+    width: 23vw;
+}
+
+.thumbnail {
+    width: 5vw;
+}
+
+h1 {
+    font-size: 2.5vw;
+    margin: none;
+}
+
+
+.dogma {
+    display: flex;
+    flex-direction: column;
+    margin-left: 4%;
+    margin-right: 12%;
+    background-color: #181818;
+    border-radius: 2vw;
+    padding: 1.5vw;
+}
+
+.dogma-text {
+    font-size: 1.3vw;
+    animation: colorRotate 1s infinite alternate;
+    //color: #ffcd42;
+
+}
+
+.gallery-container {
+    margin-left: 12.3%;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes colorRotate {
+    0% {
+        color: #ffcd45;
+    }
+
+
+
+    100% {
+        color: #ffd769;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+
+    .main-container div:first-child {
+        order: 1;
+    }
+
+    .dogma-text {
+        font-size: 2.5vw;
+    }
+
+
+    .title {
+        font-size: 4vw;
+        text-align: center;
+    }
+
+    .gallery-container {
+        margin-left: 5%;
+    }
+
+    .dogma {
+        margin-right: 10%;
+        margin-left: 10%;
+        margin-bottom: 4%;
+
+        padding: 3vw;
+    }
+
+    .thumbnail {
+        width: 10vw;
+    }
+
+    .item {
+        width: 50vw;
+    }
+
+    .grid {
+        width: 5vw;
+    }
+
+    .main-container {
+        padding-top: 5vw;
+    }
+
+
+}

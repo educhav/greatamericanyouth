@@ -5,6 +5,8 @@
 /client/tmp
 /client/out-tsc
 /client/bazel-out
+.vscode/
+.editorconfig/
 
 # Node
 /client/.angular/cache

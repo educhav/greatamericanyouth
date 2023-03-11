@@ -1,4 +1,93 @@
-<div class="main-container">
-    <h1 class="title">Publish</h1>
+<div class="main-container" *ngIf="!this.uploading && !this.uploaded">
+    <form [formGroup]="form" class="user-form ">
+        <h1 class="title">Publish</h1>
+        <span class="p-float-label">
+            <input id="float-input" style="width:25rem;" type="text" pInputText class="p-inputtext-sm"
+                formControlName="title">
+            <label for="float-input">Title</label>
+        </span>
+        <span class="p-float-label">
+            <input id="float-input" style="width: 25rem;" type="text" pInputText class="p-inputtext-sm"
+                formControlName="author">
+            <label for="float-input">Author</label>
+        </span>
 
+        <span class="p-float-label">
+            <input id="float-input" style="width: 25rem;" type="text" pInputText class="p-inputtext-sm"
+                formControlName="urlName">
+            <label for="float-input">Url Name</label>
+        </span>
+        <span class="p-float-label">
+            <p-calendar class="calendar p-inputtext-sm" inputId="calendar" formControlName="date">
+            </p-calendar>
+            <label for="calendar">Date</label>
+        </span>
+        <span class="p-float-label">
+            <textarea formControlName="content" inputId="content" style="width: 25rem;" [rows]="10" [cols]="55"
+                pInputTextarea [autoResize]="true" (change)="updateSections()"></textarea>
+            <label for="content">Content</label>
+        </span>
+        <span class="p-float-label">
+            <textarea formControlName="description" inputId="description" style="width: 25rem;" [rows]="10" [cols]="55"
+                pInputTextarea [autoResize]="true"></textarea>
+            <label for="description">Description</label>
+        </span>
+        <h1 class="title">Media, Tags</h1>
+
+        <form (submit)="addTag()">
+            <span class="p-float-label">
+                <input id="float-input" style="width: 25rem;" type="text" pInputText class="p-inputtext-sm"
+                    [(ngModel)]="tag" name="tag-text">
+                <label for="float-input">Add Tags</label>
+            </span>
+        </form>
+        <div class="tags-container">
+            <span class="tags" *ngFor="let tag of tags">
+                <span class="tag" (click)="removeTag(tag)">{{tag}}</span>
+            </span>
+        </div>
+    </form>
+    <div class="section-files" *ngFor="let section of sections; index as i">
+        <h3>Optional image(s) or video to display before section {{i}}</h3>
+        <input class="file-input" type="file" [id]="'files' + (i)" [name]="'p' + (i)" (change)="updateSectionFiles(i)"
+            multiple>
+    </div>
+    <div class="section-files">
+        <h3>Avatar image:</h3>
+        <input type="file" id="avatar-file" name="avatar" (change)="updateAvatarFile()" class="file-input">
+    </div>
+    <div class="section-files">
+        <h3>Thumbnail image:</h3>
+        <input type="file" id="thumbnail-file" name="thumbnail" (change)="updateThumbnailFile()" class="file-input">
+    </div>
+
+    <div *ngFor="let section of sectionFiles | keyvalue">
+        <div *ngFor="let file of section.value; index as i">
+            <h3>Optional text for {{file.name}}</h3>
+            <span class="p-float-label">
+                <input [id]="'section' + section.key + '-image' + (i)" style="width: 25rem;" type="text" pInputText
+                    class="p-inputtext-sm">
+                <label [for]="'section' + section.key + '-image' + (i)">Description</label>
+            </span>
+        </div>
+    </div>
+    <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" [acceptLabel]="this.acceptMessage">
+    </p-confirmDialog>
+    <p-button (onClick)="confirm()" class="submit-button" type="submit" icon="pi pi-pencil" styleClass="pi-button-lg">
+    </p-button>
 </div>
+
+<div class="main-container" *ngIf="this.uploading">
+    <h2>Uploading..</h2>
+</div>
+<div class="main-container uploading">
+    <p-progressBar *ngIf="this.uploading" class="upload-bar" color="blue" [showValue]="false" [value]="this.progress">
+    </p-progressBar>
+</div>
+
+<div class="main-container" *ngIf="this.uploaded">
+    <h3 class="link">Should be available at <a
+            [href]="'https://greatamericanyouth.com/news/' + form.get('urlName')?.value">https://greatamericanyouth.com/news/{{form.get('urlName')?.value}}</a>
+    </h3>
+</div>
+<p-toast position="bottom-center"></p-toast>

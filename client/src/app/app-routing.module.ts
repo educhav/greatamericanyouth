@@ -16,11 +16,21 @@ import { PublishComponent } from './publish/publish.component';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    data: {
+      title: 'Home | Great American Youth',
+      description: '',
+      ogTitle: '',
+    }
   },
   {
     path: 'news',
     component: NewsComponent
+  },
+  {
+    path: 'news/:id',
+    component: NewsComponent
+
   },
   {
     path: 'login',
@@ -43,7 +53,8 @@ const routes: Routes = [
   },
   {
     path: 'publish',
-    component: PublishComponent
+    component: PublishComponent,
+    canActivate: [RoleGuard]
   },
   {
     path: 'unauthorized',

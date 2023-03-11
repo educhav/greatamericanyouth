@@ -1,8 +1,89 @@
-.main-container {
+.main-container,
+.user-form,
+.section-files {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation: fadeIn 0.5s;
 }
 
+.uploading {
+    align-items: unset;
+}
+
+
 .title {
-    font-size: 2vw;
+    font-size: 3rem;
+    text-align: center;
+    color: #95c5fd;
+}
+
+.p-float-label {
+    margin-bottom: 2rem;
+}
+
+::ng-deep .p-calendar {
+    width: 25rem;
+}
+
+.tag {
+    margin: 0.4vw;
+    font-weight: bold;
+    background-color: #060606;
+    color: #060606;
+    background-color: #d2d2d2;
+    text-align: center;
+    border-radius: 2vw;
+    padding: 1vw;
+    cursor: pointer;
+    border: 1px solid #060606;
+}
+
+.tag:hover {
+    color: #95c5fd;
+}
+
+.tags {
+    display: flex;
+}
+
+.tags-container {
+    display: flex;
+    flex-direction: row;
+    // justify-content: center;
+    flex-wrap: wrap;
+    margin-right: 20vw;
+    margin-left: 20vw;
+    margin-bottom: 2vw;
+    grid-row: 1;
+
+}
+
+.file-input {
+    font-size: 1rem;
+    padding-bottom: 2rem;
+}
+
+.submit-button {
+    padding-top: 1rem;
+    padding-bottom: 5rem;
+}
+
+.upload-bar {
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.link {
+    padding-top: 1rem;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }

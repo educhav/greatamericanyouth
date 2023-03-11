@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { API_URL } from 'src/constants/api';
-import { GW_SENDERS } from 'src/constants/constants';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GuessWhoService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private authService: AuthService) { }
 
-  getMessages(quantity: number) {
-    const senders: string = GW_SENDERS.join(",");
-    const params = new HttpParams().set('senders', senders).set('quantity', quantity);
+  getMessages(quantity: number, length: number, players: string[]) {
+    const senders: string = players.join(",");
+    const params = new HttpParams().set('senders', senders).set('quantity', quantity).set('length', length).set('token', this.authService.getToken());
     return this.httpClient.get(API_URL + 'messages', { params });
   }
   postScore(username: string, score: number) {

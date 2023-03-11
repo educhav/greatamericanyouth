@@ -21,10 +21,12 @@
 .text {
     font: monospace;
     font-weight: bold;
-    font-size: 0.5vw;
+    font-size: 0.8rem;
     position: absolute;
     bottom: 3vw;
-    right: 16px;
+    right: 1rem;
+    margin-right: 1%;
+    margin-left: 80%;
     // color: #d2d2d2;
     color: #ffcd42;
     animation: leaves infinite 0.4s alternate;
@@ -49,7 +51,8 @@
     }
 
     .text {
-        font-size: 1vw;
+        margin-left: 40%;
+        font-size: 0.5rem;
+        right: 0.5rem;
     }
-
 }

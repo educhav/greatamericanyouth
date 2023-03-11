@@ -14,4 +14,4 @@ REGEXES = ["^.*added.*to the group.$", "^.*removed.*from the group.$",
    "^You have requested an undo$", "^Last move has been undone$", "^Black wins!$",
   "^White wins!$", "^Check!$", "^Started new game as Black$", "^Started new game as White$",
   ".*set a new personal best of.*", ".*cleared.*nickname.*", ".*requested.*from.*for.*",
-  ".*joined the call.$", "The call ended."]
+  ".*joined the call.$", "The call ended.", "The video call ended."]

@@ -62,7 +62,13 @@ h1 {
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1700px) {
+    .gallery-container {
+        margin-left: 7%;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
     .main-container {
         flex-direction: column;
     }
@@ -71,14 +77,14 @@ h1 {
         order: 1;
     }
 
+
     .dogma-text {
         font-size: 2.5vw;
     }
 
-
     .title {
-        font-size: 4vw;
         text-align: center;
+        font-size: 3.5vw;
     }
 
     .gallery-container {

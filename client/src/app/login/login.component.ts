@@ -31,12 +31,10 @@ export class LoginComponent implements OnDestroy {
       this.showError("Fields required: username");
     else if (!this.loginPassword)
       this.showError("Fields required: password");
-    console.log("here")
 
     this.subscriptions.push(
       this.loginService.login(this.loginUsername, this.loginPassword)
         .subscribe((data: any) => {
-          console.log(data)
           if (data.status === 'error') {
             this.showError("Login info is incorrect.. register maybe.. source?")
           }
@@ -47,7 +45,6 @@ export class LoginComponent implements OnDestroy {
           }
 
         }, (error) => {
-          console.log("here2")
           this.showError("INTERNAL SERVER ERROR: DON'T PANIC!")
         }));
 

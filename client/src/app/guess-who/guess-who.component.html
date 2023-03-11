@@ -6,6 +6,16 @@
         <p-button (onClick)="startGame()" icon="pi pi-power-off" styleClass="pi-button-lg">
         </p-button>
     </div>
+    <div class="sub-container">
+        <h1>CHOOSE YOUR FIGHTERS</h1>
+    </div>
+    <div class="sub-container avatars choices">
+        <span *ngFor="let image of images | keyvalue">
+            <p-avatar (click)="removePlayer(image.key)" class="image-avatar choice" size="large" shape="circle"
+                [image]="image.value">
+            </p-avatar>
+        </span>
+    </div>
 </div>
 
 <div *ngIf="started && !gameOver" class="main-container" id="game">
@@ -27,6 +37,8 @@
             </p-avatar>
         </span>
     </div>
+    <p-progressBar *ngIf="this.senders.length>3" class="health-bar" color="red" [showValue]="false" [value]="health">
+    </p-progressBar>
 
 </div>
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,5 +8,11 @@ import { Component } from '@angular/core';
 })
 export class MenuComponent {
   display: boolean = false;
+  isParty: boolean = false;
+  constructor(private authService: AuthService) {
+  }
+  ngOnInit() {
+    this.isParty = this.authService.getRole() === 'party';
+  }
 
 }

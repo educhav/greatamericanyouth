@@ -13,6 +13,7 @@ export const GW_SENDERS: string[] =
         'Dolly Saphire',
         'Rande Plewka',
         'Myjuanron Taylor']
+
 export const GW_IMAGES_MAP: any = {
     'J Cole Patt': '../assets/j.png',
     'Elijah Parker': '../assets/eli.jpg',
@@ -36,7 +37,15 @@ export const MENU_MESSAGES: string[] = [
     'One nuclear warhead could ruin your entire day',
     'Now partnered with Bernard L. Madoff Investment Securities LLC!',
     'Daily reminder that you almost certainly do not matter',
-    'Source that this is minecraft plagiarism?'
+    'Source that this is Minecraft plagiarism?',
+    'This web server runs on TempleOS!',
+    'This website glows in the dark! Confirm it for yourself!',
+    'Now a proud sponsor of Dopamine™! Ask our representative Layne all about it!'
+]
+
+export const ACCEPT_MESSAGES: string[] = [
+    'Yes, but also make sure to order in a drone strike on that Ethiopian village that has not purchased 25th anniversary SDC merch yet.',
+    'Yes, can you also amplify the screams of the African child laborers who have to mine lithium to power these kinds of websites?'
 ]
 
 export const GAMES: string[] = [
@@ -47,4 +56,5 @@ export const GAY_GALLERY: object[] = [
     { 'src': '../assets/gay.png' },
     { 'src': '../assets/gay2.png' },
     { 'src': '../assets/gay3.png' }
-]
+];
+

@@ -18,6 +18,9 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
   }
+  getToken(): any {
+    return localStorage.getItem('token');
+  }
   getUsername() {
     const token = localStorage.getItem('token');
     if (token === null) {

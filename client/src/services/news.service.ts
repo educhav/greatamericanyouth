@@ -14,6 +14,11 @@ export class NewsService {
     return this.httpClient.get(API_URL + 'article', { params });
   }
 
+  getArticleByUsername(username: string) {
+    const params = new HttpParams().set('username', username);
+    return this.httpClient.get(API_URL + 'article', { params });
+  }
+
   getArticleMetaData(urlName: string) {
     const params = new HttpParams().set('urlName', urlName);
     return this.httpClient.get(API_URL + 'article-meta', { params });

@@ -10,6 +10,14 @@
     animation: fadeIn 0.5s;
 }
 
+.your-articles {
+    margin-top: 2rem;
+}
+.link {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0%;

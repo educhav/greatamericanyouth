@@ -5,4 +5,13 @@
     <div class="sub-container">
         <p-button (onClick)="this.logout()" icon="pi pi-sign-in" styleClass="pi-button-lg"></p-button>
     </div>
+    <div class="sub-container your-articles">
+        <h1>Your Articles</h1>
+    </div>
+    <div class="sub-container" *ngFor="let article of articles">
+        <a class="link" [href]="url + 'news/' + article.urlName">{{article.title}}</a>
+    </div>
+    <div *ngIf="this.articles?.length === 0" class="sub-container">
+        <h2>NONE YET :(</h2>
+    </div>
 </div>

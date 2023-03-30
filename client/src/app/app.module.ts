@@ -21,6 +21,10 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FileUploadModule } from 'primeng/fileupload';
 import { TooltipModule } from 'primeng/tooltip';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ScrollerModule } from 'primeng/scroller';
+import { ImageModule } from 'primeng/image';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+
 
 
 
@@ -38,6 +42,14 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
 import { PublishComponent } from './publish/publish.component';
+import { ChatComponent } from './chat/chat.component';
+
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = {
+  url: 'https://greatamericanyouth.com',
+  options: {}
+};
 
 
 
@@ -52,7 +64,8 @@ import { PublishComponent } from './publish/publish.component';
     UnauthorizedComponent,
     HomeComponent,
     NewsComponent,
-    PublishComponent
+    PublishComponent,
+    ChatComponent
   ],
   imports: [
     FormsModule,
@@ -77,6 +90,11 @@ import { PublishComponent } from './publish/publish.component';
     FileUploadModule,
     TooltipModule,
     ConfirmDialogModule,
+    SocketIoModule.forRoot(config),
+    ScrollerModule,
+    ScrollPanelModule,
+    ImageModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

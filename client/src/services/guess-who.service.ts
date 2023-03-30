@@ -15,7 +15,7 @@ export class GuessWhoService {
     const params = new HttpParams().set('senders', senders).set('quantity', quantity).set('length', length).set('token', this.authService.getToken());
     return this.httpClient.get(API_URL + 'messages', { params });
   }
-  postScore(username: string, score: number) {
-    return this.httpClient.post(API_URL + 'leaderboards', { username: username, score: score, game: "guess-who" });
+  postScore(username: string, score: number, game: string) {
+    return this.httpClient.post(API_URL + 'leaderboards', { username: username, score: score, game: game });
   }
 }

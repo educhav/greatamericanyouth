@@ -26,6 +26,8 @@ export class GuessWhoComponent implements OnDestroy {
   wrongSet: Set<string> = new Set();
   wrongPerson: string = "";
   correctAnswer: string = "";
+  score: number = 0;
+  roundScore: number = 0;
 
   constructor(private guessWhoService: GuessWhoService, private authService: AuthService) {
     this.images = GW_IMAGES_MAP;
@@ -49,9 +51,7 @@ export class GuessWhoComponent implements OnDestroy {
     )
   }
   removePlayer(player: string) {
-    if (this.senders.length <= 2) {
-      return;
-    }
+    if (this.senders.length <= 2) return;
     delete (this.images as any)[player]
     this.senders = this.senders.filter((sender) => sender != player);
   }
@@ -70,6 +70,7 @@ export class GuessWhoComponent implements OnDestroy {
     this.currentMessage = personMessages[randomIndex][1];
     this.currentSender = personMessages[randomIndex][2];
     this.wrongSet = new Set();
+    this.roundScore = (this.senders.length / 2) >> 0;
     if (this.roundNumber % 12 == 0) {
       this.messagesLoaded = false;
       this.subscriptions.push(
@@ -83,24 +84,29 @@ export class GuessWhoComponent implements OnDestroy {
   userResponse(guess: string) {
     if (guess === this.currentSender) {
       this.roundNumber++;
+      this.score += this.roundScore;
       this.startRound();
     }
     else {
       this.wrongSet.add(guess);
+      this.roundScore--;
       this.wrongPerson = guess;
       const strikes = (this.senders.length / 2) >> 0
       this.health = ((strikes - this.wrongSet.size) / strikes) * 100
 
-      if (this.wrongSet.size === ((this.senders.length / 2) >> 0)) {
+      if (this.wrongSet.size === strikes) {
         this.gameOver = true;
         this.correctAnswer = this.images[this.currentSender as keyof object];
-        if (this.senders.length >= 10) {
-          this.subscriptions.push(
-            this.guessWhoService.postScore(
-              this.authService.getUsername(), this.roundNumber)
-              .subscribe((response) => {
-              }));
+        let game = this.senders.length >= 10 ? "guess-who-large" : "guess-who-medium";
+        if (game === "guess-who-medium") {
+          game = this.senders.length >= 6 ? "guess-who-medium" : "guess-who-small";
         }
+        this.subscriptions.push(
+          this.guessWhoService.postScore(
+            this.authService.getUsername(), this.score, game)
+            .subscribe((response) => {
+            }));
+        this.score = 0;
       }
     }
 

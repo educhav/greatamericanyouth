@@ -49,8 +49,11 @@ export const ACCEPT_MESSAGES: string[] = [
 ]
 
 export const GAMES: string[] = [
-    'guess-who'
+    'guess-who-large',
+    'guess-who-medium',
+    'guess-who-small'
 ];
+
 
 export const GAY_GALLERY: object[] = [
     { 'src': '../assets/gay.png' },
@@ -58,3 +61,10 @@ export const GAY_GALLERY: object[] = [
     { 'src': '../assets/gay3.png' }
 ];
 
+export const CHAT_AVATARS: any = {
+    'nestrichal': '../assets/eddie.png',
+    'ElderAustinian': '../assets/austin.png',
+    'neworleanshooker': '../assets/sam.png',
+    'JackKillean': '../assets/j.png',
+    'CummieDistributionCenter': '../assets/jj.png'
+}

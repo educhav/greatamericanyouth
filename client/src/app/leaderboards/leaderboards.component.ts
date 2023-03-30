@@ -6,7 +6,8 @@ import { GAMES } from 'src/constants/constants';
 @Component({
   selector: 'app-leaderboards',
   templateUrl: './leaderboards.component.html',
-  styleUrls: ['./leaderboards.component.scss']
+  styleUrls: ['./leaderboards.component.scss'],
+  providers: [LeaderboardsService]
 })
 export class LeaderboardsComponent {
   loaded: boolean = false;

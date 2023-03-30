@@ -4,15 +4,27 @@ from datetime import timedelta
 import threading
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from flask_socketio import SocketIO, send
 import hashlib
 import json
 import uuid
+import logging
 
 # Connect to the database
 db = sqlite3.connect('../greatamericanyouth.db', check_same_thread=False)
 
 app = Flask(__name__)
+socket_ = SocketIO(app, cors_allowed_origins='*')
+socket_.init_app(app, message_queue=None,
+                 cors_allowed_origins="*", max_http_buffer_size=1024*1024*1024)
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(levelname)s %(message)s',
+                    handlers=[logging.FileHandler('/var/www/greatamericanyouth/server/gay_server.log'),
+                              logging.StreamHandler()])
+
 app.config['JWT_SECRET_KEY'] = os.environ['JWT_TOKEN']
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=90)
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 * 1024 * 1024
@@ -38,7 +50,6 @@ def login():
     cursor.execute(
         'SELECT * FROM Users WHERE username = ? AND password = ?', params)
     user = cursor.fetchone()
-    print(user)
 
     if user:
         return jsonify({'status': 'success', 'role': user[2], 'token': create_access_token(identity={"username": username, "role": user[2]})})
@@ -131,6 +142,7 @@ def get_leaderboard():
 def get_articles():
     username = request.args.get("username")
     urlName = request.args.get("urlName")
+    print("testing get_articles")
 
     if username and urlName:
         return jsonify({'status': 'incorrect usage of endpoint'})
@@ -244,8 +256,56 @@ def post_article():
 
     db.commit()
 
-    return {'status': 'success'}
+    return jsonify({'status': 'success'})
+
+
+@app.route('/chat-messages', methods=['GET'])
+def get_chat_messages():
+    return None
+    # cursor.execute('SELECT * FROM ChatMessages')
+    # messages = cursor.fetchall()
+    # return jsonify(messages)
+
+
+@socket_.on('message')
+def on_message(data):
+
+    match data['type']:
+        case 'media':
+            sender = data['sender']
+            time = data['time']
+            month = data['month']
+            buffer = data['buffer']
+            name = data['name']
+            fileType = data['fileType']
+
+            sender_dir = os.path.join('chat-media', sender)
+            if not os.path.exists(sender_dir):
+                os.mkdir(sender_dir)
+
+            chat_media_dir = os.path.join(sender_dir, month)
+            if not os.path.exists(chat_media_dir):
+                os.mkdir(chat_media_dir)
+
+            hash_ = str(uuid.uuid4())[:8]
+            split_ = name.split(".")
+            hashed_name = split_[0] + '_' + hash_ + '.' + split_[1]
+
+            path = os.path.join(chat_media_dir, hashed_name)
+            with open(path, "wb") as file:
+                file.write(buffer)
+
+            send({'type': data['type'], 'sender': sender,
+                 'time': time, 'name': hashed_name, 'path': path,
+                  'fileType': fileType}, broadcast=True)
+        case 'user-message':
+            send(data, broadcast=True)
+
+    # with lock:
+    #     cursor.execute('INSERT INTO ChatMessages VALUES(?,?,?,?)',
+    #                    (sender, time, content, media))
+    #     db.commit()
 
 
 if __name__ == "__main__":
-    app.run()
+    socket_.run(app, allow_unsafe_werkzeug=True, debug=True)

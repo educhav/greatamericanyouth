@@ -12,16 +12,12 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
 import { PublishComponent } from './publish/publish.component';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    data: {
-      title: 'Home | Great American Youth',
-      description: '',
-      ogTitle: '',
-    }
   },
   {
     path: 'news',
@@ -30,7 +26,6 @@ const routes: Routes = [
   {
     path: 'news/:id',
     component: NewsComponent
-
   },
   {
     path: 'login',
@@ -54,6 +49,11 @@ const routes: Routes = [
   {
     path: 'publish',
     component: PublishComponent,
+    canActivate: [RoleGuard]
+  },
+  {
+    path: 'chat',
+    component: ChatComponent,
     canActivate: [RoleGuard]
   },
   {

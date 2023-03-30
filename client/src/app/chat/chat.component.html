@@ -1,0 +1,34 @@
+<div class="main-container">
+    <div class="messages-container" #chatbox>
+        <div *ngFor="let message of messages" class="message-container"
+            [ngClass]="this.socketLoading.get(message.time) ? 'loading' : ''">
+            <p-avatar class="image-avatar choice" size="large" shape="circle" [image]="this.avatars[message.sender]">
+            </p-avatar>
+
+            <span *ngIf="message.type === 'user-message'" class="message-sender-container">
+                <span class="message-sender">{{message?.sender}} at {{message.formattedTime}}</span>
+                <span class="message-content">{{message?.content}}</span>
+            </span>
+            <span *ngIf="message.type === 'media'" class="message-sender-container">
+                <span class="message-sender">{{message?.sender}} at {{message.formattedTime}}</span>
+                <span class="message-media"><p-image class="message-media-image" [src]="url + message.path"
+                        [preview]="true" [width]="'300px'"></p-image></span>
+                <span class="message-sender">{{message.name}}</span>
+            </span>
+        </div>
+    </div>
+
+
+    <form (submit)="sendMessage()" class="user-input">
+        <form class="media-form">
+            <input (change)="uploadMedia()" type="file" id="file-upload" name="file-upload">
+            <label for="file-upload">
+                <span class="pi pi-image media-upload"></span>
+            </label>
+        </form>
+        <div class="message-input-container">
+            <input id="content" type="text" pInputText class="p-inputtext-sm message-input" [(ngModel)]="this.content"
+                name="content" inputId="content" placeholder="Enter message here..">
+        </div>
+    </form>
+</div>

@@ -40,6 +40,11 @@
     <p-progressBar *ngIf="this.senders.length>3" class="health-bar" color="red" [showValue]="false" [value]="health">
     </p-progressBar>
 
+
+    <div class="sub-container">
+        <h1>Score: {{score}}</h1>
+    </div>
+
 </div>
 
 <div *ngIf="gameOver" class="main-container">

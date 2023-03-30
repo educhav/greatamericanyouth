@@ -1,6 +1,12 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 node_modules/
+greatamericanyouth.db
+theme/
+
+package.json
+package-lock.json
+
 # Compiled output
 /client/dist
 /client/tmp

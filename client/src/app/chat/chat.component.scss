@@ -1,0 +1,159 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loading {
+    animation: fadeIn 0.5s infinite alternate;
+}
+
+.message-sender-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.messages-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    background-color: #181818;
+    height: 68vh;
+    width: 80%;
+    padding: 1rem;
+    border: #d1d1d1 2px solid;
+    border-radius: 1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+    //animation: colorRotate 1s infinite alternate;
+}
+
+.message-container {
+    display: flex;
+    margin-bottom: 1.5rem;
+}
+
+::ng-deep .p-avatar.p-avatar-lg {
+    width: 3.5rem;
+    height: 3.5rem;
+    border: 2px solid #d2d2d2;
+}
+
+.message-sender {
+    margin-left: 0.5rem;
+    margin-bottom: 0.1rem;
+    font-size: 0.65rem;
+    font-weight: bold;
+}
+
+.message-content {
+    background-color: #0080ff;
+    color: #ffffff;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+    margin-left: 0.5rem;
+}
+
+.user-input {
+    display: flex;
+    position: fixed;
+    bottom: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: #181818;
+    border: 3px solid #d1d1d1;
+    width: 80%;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+
+.message-input-container {
+    margin-left: 1rem;
+}
+
+.message-input {
+    width: 70vw;
+}
+
+.message-media {
+    border-radius: 1rem;
+    margin: 0.5rem;
+}
+
+
+
+.media-upload {
+    font-size: 2rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    color: #060606;
+    background-color: #0080ff;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 1100px) {
+    .messages-container {
+        height: 65vh;
+        width: 97%;
+    }
+
+    .user-input {
+        width: 97%;
+    }
+
+    .message-input {
+        width: 65vw;
+    }
+
+    ::ng-deep .p-avatar.p-avatar-lg {
+        width: 2.5rem;
+        height: 2.5rem;
+        border: 2px solid #d2d2d2;
+    }
+
+    .message-content {
+        padding: 0.3rem;
+        padding-left: 0.5rem;
+        margin-bottom: 1rem;
+        margin-left: 0.3rem;
+    }
+}
+
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0.35;
+    }
+
+    100% {
+        opacity: 0.65;
+    }
+}
+
+@keyframes colorRotate {
+    from {
+        border-color: #6666ff;
+    }
+
+    10% {
+        border-color: #0099ff;
+    }
+
+    50% {
+        border-color: #00ff00;
+    }
+
+    75% {
+        border-color: #ff3399;
+    }
+
+    100% {
+        border-color: #6666ff;
+    }
+}

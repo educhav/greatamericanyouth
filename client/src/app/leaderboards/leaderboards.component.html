@@ -1,10 +1,10 @@
-<div *ngIf="loaded" class="main-container">
+<div class="main-container">
     <div class="sub-container">
         <h1 class="shiny">LEADERBOARDS</h1>
     </div>
-    <div class="sub-container">
-        <p-tabView *ngFor="let game of this.games">
-            <p-tabPanel [header]="game" styleClass="panel">
+    <div *ngIf="loaded" class="sub-container">
+        <p-tabView>
+            <p-tabPanel *ngFor="let game of this.games" [header]="game" styleClass="panel">
                 <p-table [value]="this.leaderboards[game]" [scrollable]="true" scrollHeight="400px"
                     [tableStyle]="{'min-width': '60rem'}">
                     <ng-template pTemplate="header">
@@ -24,7 +24,8 @@
             </p-tabPanel>
         </p-tabView>
     </div>
-</div>
-<div *ngIf="!loaded" class="main-container">
-    <p-progressSpinner></p-progressSpinner>
+    <div *ngIf="!loaded" class="sub-container">
+
+        <p-progressSpinner></p-progressSpinner>
+    </div>
 </div>

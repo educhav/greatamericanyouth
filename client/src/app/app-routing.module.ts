@@ -13,6 +13,8 @@ import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
 import { PublishComponent } from './publish/publish.component';
 import { ChatComponent } from './chat/chat.component';
+import { CatalogComponent } from './catalog/catalog.component';
+import { ModelsComponent } from './models/models.component';
 
 const routes: Routes = [
   {
@@ -21,11 +23,16 @@ const routes: Routes = [
   },
   {
     path: 'news',
-    component: NewsComponent
+    component: CatalogComponent
   },
   {
     path: 'news/:id',
     component: NewsComponent
+  },
+  {
+    path: 'models',
+    component: ModelsComponent,
+    canActivate: [RoleGuard]
   },
   {
     path: 'login',

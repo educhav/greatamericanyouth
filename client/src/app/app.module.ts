@@ -24,6 +24,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ScrollerModule } from 'primeng/scroller';
 import { ImageModule } from 'primeng/image';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { PaginatorModule } from 'primeng/paginator';
 
 
 
@@ -45,6 +46,8 @@ import { PublishComponent } from './publish/publish.component';
 import { ChatComponent } from './chat/chat.component';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { CatalogComponent } from './catalog/catalog.component';
+import { ModelsComponent } from './models/models.component';
 
 const config: SocketIoConfig = {
   url: 'https://greatamericanyouth.com',
@@ -65,7 +68,9 @@ const config: SocketIoConfig = {
     HomeComponent,
     NewsComponent,
     PublishComponent,
-    ChatComponent
+    ChatComponent,
+    CatalogComponent,
+    ModelsComponent,
   ],
   imports: [
     FormsModule,
@@ -93,8 +98,8 @@ const config: SocketIoConfig = {
     SocketIoModule.forRoot(config),
     ScrollerModule,
     ScrollPanelModule,
-    ImageModule
-
+    ImageModule,
+    PaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

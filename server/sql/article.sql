@@ -5,7 +5,7 @@ CREATE TABLE Articles (
     date int NOT NULL,
     description TEXT,
     published int NOT NULL,
-    username int NOT NULL,
+    username TEXT NOT NULL,
     thumbnail TEXT,
     avatar TEXT,
     tags TEXT,

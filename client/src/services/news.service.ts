@@ -8,6 +8,9 @@ import { API_URL } from 'src/constants/api';
 export class NewsService {
 
   constructor(private httpClient: HttpClient) { }
+  getArticles() {
+    return this.httpClient.get(API_URL + 'article');
+  }
 
   getArticleByUrl(urlName: string) {
     const params = new HttpParams().set('urlName', urlName);

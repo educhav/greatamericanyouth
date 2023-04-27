@@ -1,0 +1,41 @@
+.main-container,
+.user-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    animation: fadeIn 0.5s;
+}
+
+.upload-bar {
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.uploading {
+    align-items: unset;
+}
+
+.file-input {
+    font-size: 1rem;
+    padding-bottom: 2rem;
+}
+
+.submit-button {
+    padding-top: 1rem;
+    padding-bottom: 5rem;
+}
+
+.upload-bar {
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

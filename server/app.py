@@ -10,6 +10,7 @@ import hashlib
 import json
 import uuid
 import logging
+import subprocess
 
 # Connect to the database
 db = sqlite3.connect('../greatamericanyouth.db', check_same_thread=False)
@@ -142,7 +143,6 @@ def get_leaderboard():
 def get_articles():
     username = request.args.get("username")
     urlName = request.args.get("urlName")
-    print("testing get_articles")
 
     if username and urlName:
         return jsonify({'status': 'incorrect usage of endpoint'})
@@ -261,10 +261,50 @@ def post_article():
 
 @app.route('/chat-messages', methods=['GET'])
 def get_chat_messages():
-    return None
+    pass
     # cursor.execute('SELECT * FROM ChatMessages')
     # messages = cursor.fetchall()
     # return jsonify(messages)
+
+
+@app.route('/model', methods=['POST'])
+def post_model():
+    data = request.form
+    username = data["username"]
+    modelName = data["modelName"]
+    video = request.files["video"]
+
+    cursor.execute('SELECT * FROM Models WHERE model = ?', (modelName,))
+    if cursor.fetchone():
+        return jsonify({'status': 'duplicate'})
+
+    hash_ = str(uuid.uuid4())[:8]
+    tmp_path = "tmp" + hash_ + ".mp4"
+    video.save(tmp_path)
+
+    subprocess.run(["python3", "ai-graphics/process.py", tmp_path,
+                   "ai-graphics/models/" + modelName + ".json"], check=True)
+
+    os.remove(tmp_path)
+
+    cursor.execute('INSERT INTO Models VALUES(?, ?)', (modelName, username))
+    db.commit()
+
+    return jsonify({'status': 'success'})
+
+
+@app.route('/model', methods=['GET'])
+def get_model_metadata():
+    with lock:
+        cursor.execute(
+            'SELECT * FROM Models')
+        models = cursor.fetchall()
+        response = []
+        for model in models:
+            response.append({attr[0]: val for (attr, val)
+                            in zip(cursor.description, model)})
+
+    return jsonify(response)
 
 
 @socket_.on('message')

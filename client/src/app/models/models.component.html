@@ -1,0 +1,31 @@
+<div class="main-container" *ngIf="!this.uploading && !this.uploaded">
+    <form [formGroup]="form" class="user-form ">
+        <h1 class="title">Upload Video to Extract 3D Model</h1>
+        <span class="p-float-label">
+            <input id="float-input" style="width:25rem;" type="text" pInputText class="p-inputtext-sm"
+                formControlName="model">
+            <label for="float-input">Model Name</label>
+        </span>
+        <h3>Video to extract model from:</h3>
+        <input type="file" accept="video/mp4" id="video-file" name="video" (change)="updateVideo()" class="file-input">
+    </form>
+    <p-button (onClick)="submitForm()" class="submit-button" type="submit" icon="pi pi-pencil"
+        styleClass="pi-button-lg">
+    </p-button>
+</div>
+
+<div class="main-container" *ngIf="this.uploading">
+    <h2>Uploading..</h2>
+</div>
+<div class="main-container uploading">
+    <p-progressBar *ngIf="this.uploading" class="upload-bar" color="blue" [showValue]="false" [value]="this.progress">
+    </p-progressBar>
+</div>
+
+<div class="main-container" *ngIf="this.uploaded">
+    <h3 class="link">Should be available at <a
+            [href]="'https://greatamericanyouth.com/ai-graphics/'">https://greatamericanyouth.com/ai-graphics/</a>
+    </h3>
+</div>
+
+<p-toast position="bottom-center"></p-toast>

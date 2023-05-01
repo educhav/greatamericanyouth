@@ -8,7 +8,7 @@ let landmarks = [];
 let w = 1200;
 let h = 720;
 let scene = new T.Scene();
-scene.background = new T.Color( 0xffffff );
+scene.background = new T.Color( 0x555555 );
 
 let renderer = new T.WebGLRenderer();
 

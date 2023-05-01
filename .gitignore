@@ -4,6 +4,7 @@ node_modules/
 greatamericanyouth.db
 theme/
 server/ai-graphics/models
+server/ai-graphics/libs
 
 package.json
 package-lock.json

@@ -15,6 +15,8 @@ import { PublishComponent } from './publish/publish.component';
 import { ChatComponent } from './chat/chat.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { ModelsComponent } from './models/models.component';
+import { LawnServiceComponent } from './lawn-service/lawn-service.component';
+import { IllegalMoviesComponent } from './illegal-movies/illegal-movies.component';
 
 const routes: Routes = [
   {
@@ -24,6 +26,16 @@ const routes: Routes = [
   {
     path: 'news',
     component: CatalogComponent
+  },
+  {
+    path: 'lawn-service',
+    component: LawnServiceComponent,
+    canActivate: [RoleGuard]
+  },
+  {
+    path: 'illegal-movies',
+    component: IllegalMoviesComponent,
+    canActivate: [RoleGuard]
   },
   {
     path: 'news/:id',

@@ -68,5 +68,7 @@ export const CHAT_AVATARS: any = {
     'JackKillean': '../assets/j.png',
     'CummieDistributionCenter': '../assets/jj.png',
     'Eli': '../assets/eli.jpg',
-    'J': '../assets/j.png'
+    'J': '../assets/j.png',
+    'Vitalik Buterin Fan 1337': '../assets/vitalik.jpg',
+    'Bucky': '../assets/bucky.png'
 }

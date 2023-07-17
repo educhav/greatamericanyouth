@@ -1,2 +1,21 @@
-<p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="120"
-    [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+<div class="main-container">
+    <div *ngFor="let article of articles">
+        <a *ngIf="article.published" [href]="this.baseUrl + article.urlName">
+            <div class="article">
+                <img [src]="article.thumbnail">
+                <div class="meta-container">
+                    <span class="title">{{article.title}}</span>
+                    <div class="author">By: {{article.author}}</div>
+                    <audio class="audiobook" controls *ngIf="article.audioUrl">
+                        <source [src]="url + 'article-media/' + article.urlName + '/' + article.audioUrl" type="audio/mpeg">
+                    </audio>
+                </div>
+                <p-avatar class="avatar" [image]="article.avatar" size="large" shape="circle"></p-avatar>
+            </div>
+        </a>
+    </div>
+</div>
+<!-- <div class="paginator">
+    <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="120"
+            style="width: 100%"></p-paginator>
+</div> -->

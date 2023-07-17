@@ -19,7 +19,7 @@
         </div>
     </div>
 </div>
-<div *ngIf="!isLoading" class="main-container">
+<div *ngIf="!isLoading && this.tags.length != 0" class="main-container">
     <div class="tags-container">
         <span class="tag-text">TAGS:</span>
         <span *ngFor="let tag of tags" class="tags">

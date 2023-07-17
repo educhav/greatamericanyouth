@@ -48,6 +48,8 @@ import { ChatComponent } from './chat/chat.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { CatalogComponent } from './catalog/catalog.component';
 import { ModelsComponent } from './models/models.component';
+import { LawnServiceComponent } from './lawn-service/lawn-service.component';
+import { IllegalMoviesComponent } from './illegal-movies/illegal-movies.component';
 
 const config: SocketIoConfig = {
   url: 'https://greatamericanyouth.com',
@@ -71,6 +73,8 @@ const config: SocketIoConfig = {
     ChatComponent,
     CatalogComponent,
     ModelsComponent,
+    LawnServiceComponent,
+    IllegalMoviesComponent,
   ],
   imports: [
     FormsModule,

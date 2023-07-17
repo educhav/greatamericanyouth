@@ -1,11 +1,13 @@
 <p-sidebar class="sidebar" [modal]="true" [(visible)]="this.display">
     <h1><a href="/">Home</a></h1>
-    <h1><a href="/guess-who">Guess Who?</a></h1>
-    <h1><a href="/leaderboards">Leaderboards</a></h1>
-    <h1 *ngIf="isParty"><a href="/publish">Publish</a></h1>
-    <h1 *ngIf="isParty"><a href="/chat">Chat</a></h1>
-    <h1 *ngIf="isParty"><a href="/models">Models</a></h1>
-    <h1 *ngIf="isParty"><a href="/ai-graphics">AI Graphics</a></h1>
+    <h1><a href="/news">News</a></h1>
+    <h1 *ngIf="isParty"><a href="/guess-who">Guess Who?</a></h1>
+    <h1 *ngIf="isParty"><a href="/leaderboards">Leaderboards</a></h1>
+    <h1 *ngIf="isParty || isSemiParty"><a href="/publish">Publish</a></h1>
+    <h1 *ngIf="isParty || isSemiParty"><a href="/chat">Chat</a></h1>
+    <h1 *ngIf="isParty || isSemiParty"><a href="/models">Models</a></h1>
+    <h1 *ngIf="isParty || isSemiParty"><a href="/ai-graphics">AI Graphics</a></h1>
+    <h1 *ngIf="isParty"><a href="/illegal-movies">Illegal Movies</a></h1>
 </p-sidebar>
 
 <p-button (click)="display = !display" class="pi-button-rounded" icon="pi pi-bars"></p-button>

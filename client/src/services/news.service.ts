@@ -22,7 +22,7 @@ export class NewsService {
     return this.httpClient.get(API_URL + 'article', { params });
   }
 
-  getArticleMetaData(urlName: string) {
+  getArticleMetadata(urlName: string, getAll: boolean) {
     const params = new HttpParams().set('urlName', urlName);
     return this.httpClient.get(API_URL + 'article-meta', { params });
   }

@@ -9,10 +9,12 @@ import { AuthService } from 'src/services/auth.service';
 export class MenuComponent {
   display: boolean = false;
   isParty: boolean = false;
+  isSemiParty: boolean = false;
   constructor(private authService: AuthService) {
   }
   ngOnInit() {
     this.isParty = this.authService.getRole() === 'party';
+    this.isSemiParty = this.authService.getRole() == 'semi-party';
   }
 
 }

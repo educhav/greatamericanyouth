@@ -171,15 +171,26 @@ def get_articles():
 @app.route('/article-meta', methods=['GET'])
 def get_article_metadata():
     urlName = request.args.get('urlName')
+    getAll = request.args.get('getAll')
     with lock:
+        if getAll:
+            cursor.execute(
+                'SELECT thumbnail, title, description, author, avatar FROM Articles WHERE urlName = ? ORDER BY date DESC', (urlName,))
+            row = cursor.fetchone()
+            response = {attr[0]: val for (
+                attr, val) in zip(cursor.description, row)}
+            return jsonify(response)
         cursor.execute(
-            'SELECT thumbnail, title, description FROM Articles WHERE urlName = ?', (urlName,))
-        row = cursor.fetchone()
-        response = {attr[0]: val for (
-            attr, val) in zip(cursor.description, row)}
-
+            'SELECT thumbnail, title, description, author, avatar, urlName, audioUrl, published FROM Articles ORDER BY date DESC')
+        rows = cursor.fetchall()
+        articles = []
+        for row in rows:
+            articles.append({attr[0]: val for (
+                attr, val) in zip(cursor.description, row)})
+        response = articles
     return jsonify(response)
-
+        
+        
 
 @app.route('/article', methods=['POST'])
 @jwt_required()

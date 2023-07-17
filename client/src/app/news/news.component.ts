@@ -36,7 +36,6 @@ export class NewsComponent {
       const urlName = params['id'];
       this.subscriptions.push(this.newsService.getArticleByUrl(urlName).subscribe(response => {
         let data = (response as any)[0];
-        if (data?.published) {
           this.isLoading = false;
           this.title = data?.title;
           this.author = data?.author;
@@ -47,7 +46,9 @@ export class NewsComponent {
           });
           this.avatar = GAY_URL + data?.avatar;
           this.thumbnail = GAY_URL + data?.thumbnail;
-          this.tags = JSON.parse(data?.tags);
+          if (data?.tags) {
+            this.tags = JSON.parse(data?.tags);
+          }
           this.sections = JSON.parse(data?.sections);
           this.description = data?.description;
           this.titleService.setTitle(this.title);
@@ -56,8 +57,7 @@ export class NewsComponent {
           this.metaService.updateTag({ property: 'og:description', content: this.description });
           this.metaService.updateTag({ property: 'description', content: this.description });
           this.processSections();
-        }
-      }));
+        }));
     });
   }
 
